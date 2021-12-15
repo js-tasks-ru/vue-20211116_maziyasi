@@ -3,8 +3,19 @@ import { defineComponent } from './vendor/vue.esm-browser.js';
 export default defineComponent({
   name: 'MeetupCover',
 
+  props: {
+    title: String,
+    image: String
+  },
+
+  computed: {
+    backgroundImageStyle() {
+      return this.image ? { '--bg-url': 'url(' + this.image + ')'} : {};
+    }
+  },
+
   template: `
-    <div class="meetup-cover" style="--bg-url: url('https://course-vue.javascript.ru/api/images/2')">
-        <h1 class="meetup-cover__title">Title</h1>
+    <div class="meetup-cover" :style="backgroundImageStyle">
+        <h1 class="meetup-cover__title">{{ title }}</h1>
     </div>`,
 });
